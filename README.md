@@ -1,12 +1,12 @@
-Role Name
+ansible-role-proxy
 =========
 
-A brief description of the role goes here.
+this module manages system level proxy in ubuntu, redhat and suse.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+no.
 
 Role Variables
 --------------
@@ -25,7 +25,13 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - role: proxy
+           server: 'http://myproxy.com'
+           port: '8080'
+           no_proxy:
+             - localhost
+             - 127.0.0.1
+         
 
 License
 -------
@@ -35,4 +41,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Elvis Cai
