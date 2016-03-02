@@ -1,2 +1,14 @@
 ---
 # defaults file for ansible-role-proxy
+server: ''
+port: ''
+https_server: ''
+https_port: ''
+ftp_server: ''
+ftp_port: ''
+gopher_server: ''
+gopher_port: ''
+no_proxy: []
+proxy_owner: root
+proxy_group: root
+proxy_mode: 644

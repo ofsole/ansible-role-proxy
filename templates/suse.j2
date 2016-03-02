@@ -1,0 +1,59 @@
+# This file is being maintained by Ansible.
+# DO NOT EDIT
+## Path:        Network/Proxy
+## Description:
+## Type:        yesno
+## Default:     no
+## Config:      kde,profiles
+#
+# Enable a generation of the proxy settings to the profile.
+# This setting allows to turn the proxy on and off while
+# preserving the particular proxy setup.
+#
+PROXY_ENABLED="yes"
+
+## Type:        string
+## Default:     ""
+#
+# Some programs (e.g. lynx, arena and wget) support proxies, if set in
+# the environment.  SuSEconfig can add these environment variables to
+# /etc/SuSEconfig/* (sourced by /etc/profile etc.) -
+# See http://portal.suse.com/sdb/en/1998/01/lynx_proxy.html for more details.
+# Example: HTTP_PROXY="http://proxy.provider.de:3128/"
+{% if server and port %}
+HTTP_PROXY="{{server}}:{{port}}"
+{% endif %}
+
+## Type:        string
+## Default:     ""
+#
+# Some programs (e.g. lynx, arena and wget) support proxies, if set in
+# the environment.  SuSEconfig can add these environment variables to
+# /etc/SuSEconfig/* (sourced by /etc/profile etc.) -
+# this setting is for https connections
+{% if https_server and https_port %}
+HTTPS_PROXY=="{{https_server}}:{{https_port}}"
+{% endif %}
+
+## Type:        string
+## Default:     ""
+#
+# Example: FTP_PROXY="http://proxy.provider.de:3128/"
+{% if ftp_server and ftp_port %}
+FTP_PROXY="{{ftp_server}}:{{ftp_port}}"
+{% endif %}
+
+## Type:        string
+## Default:     ""
+#
+# Example: GOPHER_PROXY="http://proxy.provider.de:3128/"
+{% if gopher_server and gopher_port %}
+GOPHER_PROXY="{{gopher_server}}:{{gopher_port}}"
+{% endif %}
+
+## Type:        string(localhost)
+## Default:     localhost
+#
+# Example: NO_PROXY="www.me.de, do.main, localhost"
+{% if no_proxy %}
+no_proxy="{% for noproxy in no_proxy %}{{noproxy,}}{% endfor %}"

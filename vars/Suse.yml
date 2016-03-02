@@ -1,0 +1,4 @@
+---
+#This vars is for suse os family
+- proxy_src: suse.j2
+- proxy_dest: /etc/sysconfig/proxy
