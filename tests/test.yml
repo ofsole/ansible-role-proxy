@@ -2,6 +2,6 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-role-proxy
-        server: myproxy.com
-        port: 8080
+    - role: ansible-role-proxy
+      server: myproxy.com
+      port: 8080
