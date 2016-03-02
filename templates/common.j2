@@ -1,13 +1,16 @@
 # This file is being maintained by Ansible.
 # DO NOT EDIT
-{% if server and port %}
 export http_proxy={{server}}:{{port}}
-{% endif %}
 {% if https_server and https_port %}
 export https_proxy={{https_server}}:{{https_port}}
+{% else %}
+export https_proxy={{server}}:{{port}}
 {% endif %}
 {% if ftp_server and ftp_port %}
 export ftp_proxy={{ftp_server}}:{{ftp_port}}
+{% else %}
+export ftp_proxy={{server}}:{{port}}
 {% endif %}
 {% if no_proxy %}
-no_proxy="{% for noproxy in no_proxy %}{{noproxy,}}{% endfor %}"
+no_proxy="{{no_proxy | join(", ")}}"
+{% endif %}

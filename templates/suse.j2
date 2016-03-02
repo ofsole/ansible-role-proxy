@@ -20,9 +20,7 @@ PROXY_ENABLED="yes"
 # /etc/SuSEconfig/* (sourced by /etc/profile etc.) -
 # See http://portal.suse.com/sdb/en/1998/01/lynx_proxy.html for more details.
 # Example: HTTP_PROXY="http://proxy.provider.de:3128/"
-{% if server and port %}
 HTTP_PROXY="{{server}}:{{port}}"
-{% endif %}
 
 ## Type:        string
 ## Default:     ""
@@ -32,7 +30,9 @@ HTTP_PROXY="{{server}}:{{port}}"
 # /etc/SuSEconfig/* (sourced by /etc/profile etc.) -
 # this setting is for https connections
 {% if https_server and https_port %}
-HTTPS_PROXY=="{{https_server}}:{{https_port}}"
+HTTPS_PROXY="{{https_server}}:{{https_port}}"
+{% else %}
+HTTPS_PROXY="{{server}}:{{port}}"
 {% endif %}
 
 ## Type:        string
@@ -41,6 +41,8 @@ HTTPS_PROXY=="{{https_server}}:{{https_port}}"
 # Example: FTP_PROXY="http://proxy.provider.de:3128/"
 {% if ftp_server and ftp_port %}
 FTP_PROXY="{{ftp_server}}:{{ftp_port}}"
+{% else %}
+FTP_PROXY="{{server}}:{{port}}"
 {% endif %}
 
 ## Type:        string
@@ -49,6 +51,8 @@ FTP_PROXY="{{ftp_server}}:{{ftp_port}}"
 # Example: GOPHER_PROXY="http://proxy.provider.de:3128/"
 {% if gopher_server and gopher_port %}
 GOPHER_PROXY="{{gopher_server}}:{{gopher_port}}"
+{% else %}
+GOPHER_PROXY="{{server}}:{{port}}"
 {% endif %}
 
 ## Type:        string(localhost)
@@ -56,4 +60,5 @@ GOPHER_PROXY="{{gopher_server}}:{{gopher_port}}"
 #
 # Example: NO_PROXY="www.me.de, do.main, localhost"
 {% if no_proxy %}
-no_proxy="{% for noproxy in no_proxy %}{{noproxy,}}{% endfor %}"
+NO_PROXY="{{ no_proxy | join(", ")}}"
+{% endif %}

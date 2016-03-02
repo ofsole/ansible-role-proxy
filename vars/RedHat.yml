@@ -1,4 +1,4 @@
 ---
 #This vars is for redhat os family
-- proxy_src: common.j2
-- proxy_dest: /etc/profile.d/proxy.sh
+src: common.j2
+dest: /etc/profile.d/proxy.sh
