@@ -1,6 +1,8 @@
 ansible-role-proxy
 =========
 
+[![Build Status](https://travis-ci.org/ofsole/ansible-role-proxy.png?branch=master)](https://travis-ci.org/ofsole/ansible-role-proxy)
+
 this module manages system level proxy in ubuntu, redhat and suse.
 
 Requirements
