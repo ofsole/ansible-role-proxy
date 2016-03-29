@@ -8,10 +8,9 @@
   template:
     owner: "{{owner}}"
     group: "{{group}}"
-    mode:  "{{mode}}"
-    src:   "{{src}}"
-    dest:  "{{dest}}"
+    mode: "{{mode}}"
+    src: "{{src}}"
+    dest: "{{dest}}"
 
 - fail: msg="server and port parameters are mandatory"
   failed_when: server == "" or port == ""
-
